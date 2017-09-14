@@ -1,0 +1,993 @@
+
+
+Microchip Technology PIC18 LITE Macro Assembler V1.42 build -159332390 
+                                                                                               Thu Sep 14 15:53:41 2017
+
+Microchip Technology Omniscient Code Generator v1.42 (Free mode) build 201704130522
+     1                           	processor	18F46J11
+     2                           	fnconf	rparam,??,?,0
+     3                           	opt	pw 120
+     4                           	opt	lm
+     5                           	psect	cinit,global,reloc=2,class=CODE,delta=1
+     6                           	psect	cstackCOMRAM,global,class=COMRAM,space=1,delta=1,noexec
+     7                           	psect	text0,global,reloc=2,class=CODE,delta=1
+     8                           	psect	text1,global,reloc=2,class=CODE,delta=1
+     9                           	psect	text2,global,reloc=2,class=CODE,delta=1
+    10                           	psect	text3,global,reloc=2,class=CODE,delta=1
+    11                           	psect	text4,global,reloc=2,class=CODE,delta=1
+    12                           	psect	text5,global,reloc=2,class=CODE,delta=1
+    13                           	psect	text6,global,reloc=2,class=CODE,delta=1
+    14                           	psect	text7,global,reloc=2,class=CODE,delta=1
+    15                           	psect	text8,global,reloc=2,class=CODE,delta=1
+    16                           	psect	intsave_regs,global,class=BIGRAM,space=1,delta=1,noexec
+    17                           	psect	rparam,global,class=COMRAM,space=1,delta=1,noexec
+    18  0000                     
+    19                           ; Version 1.42
+    20                           ; Generated 13/04/2017 GMT
+    21                           ; 
+    22                           ; Copyright © 2017, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    23                           ; All rights reserved.
+    24                           ; 
+    25                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+      +                          ip").
+    26                           ; 
+    27                           ; Redistribution and use in source and binary forms, with or without modification, are
+    28                           ; permitted provided that the following conditions are met:
+    29                           ; 
+    30                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+      +                          t of
+    31                           ;        conditions and the following disclaimer.
+    32                           ; 
+    33                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+      +                          list
+    34                           ;        of conditions and the following disclaimer in the documentation and/or other
+    35                           ;        materials provided with the distribution.
+    36                           ; 
+    37                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+      +                          is
+    38                           ;        software without specific prior written permission.
+    39                           ; 
+    40                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    41                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+      +                          OR
+    42                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+      +                          T,
+    43                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    44                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    45                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+      +                          RICT
+    46                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+      +                          SE OF
+    47                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    48                           ; 
+    49                           ; 
+    50                           ; Code-generator required, PIC18F46J11 Definitions
+    51                           ; 
+    52                           ; SFR Addresses
+    53  0000                     _RPOR2	set	3784
+    54  0000                     _TCLKCON	set	3922
+    55  0000                     _ANCON1	set	3913
+    56  0000                     _ANCON0	set	3912
+    57  0000                     _REFOCON	set	3901
+    58  0000                     _CCPR1L	set	4027
+    59  0000                     _CCP1CON	set	4026
+    60  0000                     _T2CONbits	set	4042
+    61  0000                     _PIR1bits	set	3998
+    62  0000                     _TMR2	set	4044
+    63  0000                     _PR2	set	4043
+    64  0000                     _T2CON	set	4042
+    65  0000                     _TRISD	set	3989
+    66  0000                     _TRISC	set	3988
+    67  0000                     _TRISB	set	3987
+    68  0000                     _TRISA	set	3986
+    69  0000                     _TRISE	set	3990
+    70  0000                     _LATC	set	3979
+    71  0000                     _LATB	set	3978
+    72  0000                     _LATA	set	3977
+    73  0000                     _LATD	set	3980
+    74  0000                     _LATE	set	3981
+    75  0000                     _STATUS	set	4056
+    76  0000                     _STATUSbits	set	4056
+    77  0000                     _OSCTUNE	set	3995
+    78  0000                     _OSCCON	set	4051
+    79  0000                     _RBPU	set	32655
+    80  0000                     _GIE	set	32663
+    81                           
+    82                           ; #config settings
+    83  0000                     
+    84                           	psect	cinit
+    85  00FF34                     __pcinit:
+    86                           	opt stack 0
+    87  00FF34                     start_initialization:
+    88                           	opt stack 0
+    89  00FF34                     __initialization:
+    90                           	opt stack 0
+    91  00FF34                     end_of_initialization:
+    92                           	opt stack 0
+    93  00FF34                     __end_of__initialization:
+    94                           	opt stack 0
+    95  00FF34  0100               	movlb	0
+    96  00FF36  EFC0  F07F         	goto	_main	;jump to C main() function
+    97                           
+    98                           	psect	cstackCOMRAM
+    99  000001                     __pcstackCOMRAM:
+   100                           	opt stack 0
+   101  000001                     
+   102                           ; 2 bytes @ 0x0
+   103  000001                     	ds	2
+   104  000003                     
+   105                           ; 3 bytes @ 0x2
+   106  000003                     	ds	3
+   107  000006                     
+   108                           ; 1 bytes @ 0x5
+   109 ;;
+   110 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   111 ;;
+   112 ;; *************** function _main *****************
+   113 ;; Defined at:
+   114 ;;		line 24 in file "main.c"
+   115 ;; Parameters:    Size  Location     Type
+   116 ;;  argc            2    0[COMRAM] int 
+   117 ;;  argv            3    2[COMRAM] PTR PTR unsigned char 
+   118 ;; Auto vars:     Size  Location     Type
+   119 ;;		None
+   120 ;; Return value:  Size  Location     Type
+   121 ;;                  2    0[COMRAM] int 
+   122 ;; Registers used:
+   123 ;;		wreg, status,2, cstack
+   124 ;; Tracked objects:
+   125 ;;		On entry : 0/0
+   126 ;;		On exit  : 0/0
+   127 ;;		Unchanged: 0/0
+   128 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14
+   129 ;;      Params:         5       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   130 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   131 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   132 ;;      Totals:         5       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   133 ;;Total ram usage:        5 bytes
+   134 ;; Hardware stack levels required when called:    3
+   135 ;; This function calls:
+   136 ;;		_initialize_System
+   137 ;;		_lock_PPS
+   138 ;;		_unlock_PPS
+   139 ;; This function is called by:
+   140 ;;		Startup code after reset
+   141 ;; This function uses a non-reentrant model
+   142 ;;
+   143                           
+   144                           	psect	text0
+   145  00FF80                     __ptext0:
+   146                           	opt stack 0
+   147  00FF80                     _main:
+   148                           	opt stack 28
+   149                           
+   150                           ;main.c: 26: initialize_System();
+   151                           
+   152                           ; BSR set to: 15
+   153                           ;incstack = 0
+   154  00FF80  ECAD  F07F         	call	_initialize_System	;wreg free
+   155                           
+   156                           ;main.c: 29: unlock_PPS();
+   157  00FF84  ECD5  F07F         	call	_unlock_PPS	;wreg free
+   158                           
+   159                           ;main.c: 30: RPOR2 = 14;
+   160  00FF88  0E0E               	movlw	14
+   161  00FF8A  010E               	movlb	14	; () banked
+   162  00FF8C  6FC8               	movwf	200,b	;volatile
+   163                           
+   164                           ; BSR set to: 14
+   165                           ;main.c: 31: lock_PPS();
+   166  00FF8E  ECCA  F07F         	call	_lock_PPS	;wreg free
+   167  00FF92                     l33:
+   168  00FF92  D7FF               	goto	l33
+   169  00FF94                     __end_of_main:
+   170                           	opt stack 0
+   171                           
+   172 ;; *************** function _unlock_PPS *****************
+   173 ;; Defined at:
+   174 ;;		line 56 in file "main.c"
+   175 ;; Parameters:    Size  Location     Type
+   176 ;;		None
+   177 ;; Auto vars:     Size  Location     Type
+   178 ;;		None
+   179 ;; Return value:  Size  Location     Type
+   180 ;;                  1    wreg      void 
+   181 ;; Registers used:
+   182 ;;		None
+   183 ;; Tracked objects:
+   184 ;;		On entry : 0/0
+   185 ;;		On exit  : 0/0
+   186 ;;		Unchanged: 0/0
+   187 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14
+   188 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   189 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   190 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   191 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   192 ;;Total ram usage:        0 bytes
+   193 ;; Hardware stack levels used:    1
+   194 ;; This function calls:
+   195 ;;		Nothing
+   196 ;; This function is called by:
+   197 ;;		_main
+   198 ;; This function uses a non-reentrant model
+   199 ;;
+   200                           
+   201                           	psect	text1
+   202  00FFAA                     __ptext1:
+   203                           	opt stack 0
+   204  00FFAA                     _unlock_PPS:
+   205                           	opt stack 30
+   206                           
+   207                           ;main.c: 57: if(GIE){
+   208                           
+   209                           ;incstack = 0
+   210  00FFAA  AEF2               	btfss	intcon,7,c	;volatile
+   211  00FFAC  0012               	return	
+   212                           
+   213                           ;main.c: 58: STATUSbits.CARRY = GIE;
+   214  00FFAE  AEF2               	btfss	intcon,7,c	;volatile
+   215  00FFB0  D002               	bra	u25
+   216  00FFB2  80D8               	bsf	status,0,c	;volatile
+   217  00FFB4  D001               	bra	u27
+   218  00FFB6                     u25:
+   219  00FFB6  90D8               	bcf	status,0,c	;volatile
+   220  00FFB8                     u27:
+   221                           
+   222                           ;main.c: 59: GIE = 0;
+   223  00FFB8  9EF2               	bcf	intcon,7,c	;volatile
+   224  00FFBA  010E               	movlb	14	;# 
+   225  00FFBC  0E55               	movlw	85	;# 
+   226  00FFBE  6EA7               	movwf	4007,c	;# 
+   227  00FFC0  0EAA               	movlw	170	;# 
+   228  00FFC2  6EA7               	movwf	4007,c	;# 
+   229  00FFC4  91FF               	bcf	3839,0,b	;# 
+   230  00FFC6  0012               	return	
+   231  00FFC8                     __end_of_unlock_PPS:
+   232                           	opt stack 0
+   233                           intcon	equ	0xFF2
+   234                           status	equ	0xFD8
+   235                           
+   236 ;; *************** function _lock_PPS *****************
+   237 ;; Defined at:
+   238 ;;		line 71 in file "main.c"
+   239 ;; Parameters:    Size  Location     Type
+   240 ;;		None
+   241 ;; Auto vars:     Size  Location     Type
+   242 ;;		None
+   243 ;; Return value:  Size  Location     Type
+   244 ;;                  1    wreg      void 
+   245 ;; Registers used:
+   246 ;;		wreg, status,2
+   247 ;; Tracked objects:
+   248 ;;		On entry : 0/0
+   249 ;;		On exit  : 0/0
+   250 ;;		Unchanged: 0/0
+   251 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14
+   252 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   253 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   254 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   255 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   256 ;;Total ram usage:        0 bytes
+   257 ;; Hardware stack levels used:    1
+   258 ;; This function calls:
+   259 ;;		Nothing
+   260 ;; This function is called by:
+   261 ;;		_main
+   262 ;; This function uses a non-reentrant model
+   263 ;;
+   264                           
+   265                           	psect	text2
+   266  00FF94                     __ptext2:
+   267                           	opt stack 0
+   268  00FF94                     _lock_PPS:
+   269                           	opt stack 30
+   270                           
+   271                           ;incstack = 0
+   272  00FF94  0E55               	movlw	85	;# 
+   273  00FF96  6EA7               	movwf	4007,c	;# 
+   274  00FF98  0EAA               	movlw	170	;# 
+   275  00FF9A  6EA7               	movwf	4007,c	;# 
+   276  00FF9C  81FF               	bsf	3839,0,b	;# 
+   277                           
+   278                           ;main.c: 79: if(STATUSbits.CARRY){
+   279  00FF9E  A0D8               	btfss	status,0,c	;volatile
+   280  00FFA0  0012               	return	
+   281                           
+   282                           ;main.c: 80: GIE = 1;
+   283  00FFA2  8EF2               	bsf	intcon,7,c	;volatile
+   284                           
+   285                           ;main.c: 81: STATUS = 0;
+   286  00FFA4  0E00               	movlw	0
+   287  00FFA6  6ED8               	movwf	status,c	;volatile
+   288  00FFA8  0012               	return	
+   289  00FFAA                     __end_of_lock_PPS:
+   290                           	opt stack 0
+   291                           intcon	equ	0xFF2
+   292                           status	equ	0xFD8
+   293                           
+   294 ;; *************** function _initialize_System *****************
+   295 ;; Defined at:
+   296 ;;		line 40 in file "main.c"
+   297 ;; Parameters:    Size  Location     Type
+   298 ;;		None
+   299 ;; Auto vars:     Size  Location     Type
+   300 ;;		None
+   301 ;; Return value:  Size  Location     Type
+   302 ;;                  1    wreg      void 
+   303 ;; Registers used:
+   304 ;;		wreg, status,2, cstack
+   305 ;; Tracked objects:
+   306 ;;		On entry : 0/0
+   307 ;;		On exit  : 0/0
+   308 ;;		Unchanged: 0/0
+   309 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14
+   310 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   311 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   312 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   313 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   314 ;;Total ram usage:        0 bytes
+   315 ;; Hardware stack levels used:    1
+   316 ;; Hardware stack levels required when called:    2
+   317 ;; This function calls:
+   318 ;;		_PIN_MANAGER_Initialize
+   319 ;;		_PWM4_Initialize
+   320 ;;		_TMR2_Initialize
+   321 ;;		_initialize_OSC
+   322 ;; This function is called by:
+   323 ;;		_main
+   324 ;; This function uses a non-reentrant model
+   325 ;;
+   326                           
+   327                           	psect	text3
+   328  00FF5A                     __ptext3:
+   329                           	opt stack 0
+   330  00FF5A                     _initialize_System:
+   331                           	opt stack 28
+   332                           
+   333                           ;main.c: 41: initialize_OSC();
+   334                           
+   335                           ;incstack = 0
+   336  00FF5A  ECA5  F07F         	call	_initialize_OSC	;wreg free
+   337                           
+   338                           ;main.c: 42: PIN_MANAGER_Initialize();
+   339  00FF5E  ECE4  F07F         	call	_PIN_MANAGER_Initialize	;wreg free
+   340                           
+   341                           ;main.c: 43: TMR2_Initialize();
+   342  00FF62  ECB6  F07F         	call	_TMR2_Initialize	;wreg free
+   343                           
+   344                           ;main.c: 44: PWM4_Initialize();
+   345  00FF66  EC9D  F07F         	call	_PWM4_Initialize	;wreg free
+   346  00FF6A  0012               	return		;funcret
+   347  00FF6C                     __end_of_initialize_System:
+   348                           	opt stack 0
+   349                           intcon	equ	0xFF2
+   350                           status	equ	0xFD8
+   351                           
+   352 ;; *************** function _initialize_OSC *****************
+   353 ;; Defined at:
+   354 ;;		line 47 in file "main.c"
+   355 ;; Parameters:    Size  Location     Type
+   356 ;;		None
+   357 ;; Auto vars:     Size  Location     Type
+   358 ;;		None
+   359 ;; Return value:  Size  Location     Type
+   360 ;;                  1    wreg      void 
+   361 ;; Registers used:
+   362 ;;		wreg, status,2
+   363 ;; Tracked objects:
+   364 ;;		On entry : 0/0
+   365 ;;		On exit  : 0/0
+   366 ;;		Unchanged: 0/0
+   367 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14
+   368 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   369 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   370 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   371 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   372 ;;Total ram usage:        0 bytes
+   373 ;; Hardware stack levels used:    1
+   374 ;; This function calls:
+   375 ;;		Nothing
+   376 ;; This function is called by:
+   377 ;;		_initialize_System
+   378 ;; This function uses a non-reentrant model
+   379 ;;
+   380                           
+   381                           	psect	text4
+   382  00FF4A                     __ptext4:
+   383                           	opt stack 0
+   384  00FF4A                     _initialize_OSC:
+   385                           	opt stack 29
+   386                           
+   387                           ;main.c: 49: OSCCON = 0x70;
+   388                           
+   389                           ;incstack = 0
+   390  00FF4A  0E70               	movlw	112
+   391  00FF4C  6ED3               	movwf	4051,c	;volatile
+   392                           
+   393                           ;main.c: 51: OSCTUNE = 0x00;
+   394  00FF4E  0E00               	movlw	0
+   395  00FF50  6E9B               	movwf	3995,c	;volatile
+   396                           
+   397                           ;main.c: 53: REFOCON = 0x00;
+   398  00FF52  0E00               	movlw	0
+   399  00FF54  010F               	movlb	15	; () banked
+   400  00FF56  6F3D               	movwf	61,b	;volatile
+   401                           
+   402                           ; BSR set to: 15
+   403  00FF58  0012               	return		;funcret
+   404  00FF5A                     __end_of_initialize_OSC:
+   405                           	opt stack 0
+   406                           intcon	equ	0xFF2
+   407                           status	equ	0xFD8
+   408                           
+   409 ;; *************** function _TMR2_Initialize *****************
+   410 ;; Defined at:
+   411 ;;		line 61 in file "tmr2.c"
+   412 ;; Parameters:    Size  Location     Type
+   413 ;;		None
+   414 ;; Auto vars:     Size  Location     Type
+   415 ;;		None
+   416 ;; Return value:  Size  Location     Type
+   417 ;;                  1    wreg      void 
+   418 ;; Registers used:
+   419 ;;		wreg, status,2, cstack
+   420 ;; Tracked objects:
+   421 ;;		On entry : 0/0
+   422 ;;		On exit  : 0/0
+   423 ;;		Unchanged: 0/0
+   424 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14
+   425 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   426 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   427 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   428 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   429 ;;Total ram usage:        0 bytes
+   430 ;; Hardware stack levels used:    1
+   431 ;; Hardware stack levels required when called:    1
+   432 ;; This function calls:
+   433 ;;		_TMR2_StartTimer
+   434 ;; This function is called by:
+   435 ;;		_initialize_System
+   436 ;; This function uses a non-reentrant model
+   437 ;;
+   438                           
+   439                           	psect	text5
+   440  00FF6C                     __ptext5:
+   441                           	opt stack 0
+   442  00FF6C                     _TMR2_Initialize:
+   443                           	opt stack 28
+   444                           
+   445                           ;tmr2.c: 66: T2CON = 0x00;
+   446                           
+   447                           ; BSR set to: 15
+   448                           ;incstack = 0
+   449  00FF6C  0E00               	movlw	0
+   450  00FF6E  6ECA               	movwf	4042,c	;volatile
+   451                           
+   452                           ;tmr2.c: 69: PR2 = 0x27;
+   453  00FF70  0E27               	movlw	39
+   454  00FF72  6ECB               	movwf	4043,c	;volatile
+   455                           
+   456                           ;tmr2.c: 72: TMR2 = 0x00;
+   457  00FF74  0E00               	movlw	0
+   458  00FF76  6ECC               	movwf	4044,c	;volatile
+   459                           
+   460                           ;tmr2.c: 75: PIR1bits.TMR2IF = 0;
+   461  00FF78  929E               	bcf	3998,1,c	;volatile
+   462                           
+   463                           ;tmr2.c: 78: TMR2_StartTimer();
+   464  00FF7A  EC98  F07F         	call	_TMR2_StartTimer	;wreg free
+   465  00FF7E  0012               	return		;funcret
+   466  00FF80                     __end_of_TMR2_Initialize:
+   467                           	opt stack 0
+   468                           intcon	equ	0xFF2
+   469                           status	equ	0xFD8
+   470                           
+   471 ;; *************** function _TMR2_StartTimer *****************
+   472 ;; Defined at:
+   473 ;;		line 81 in file "tmr2.c"
+   474 ;; Parameters:    Size  Location     Type
+   475 ;;		None
+   476 ;; Auto vars:     Size  Location     Type
+   477 ;;		None
+   478 ;; Return value:  Size  Location     Type
+   479 ;;                  1    wreg      void 
+   480 ;; Registers used:
+   481 ;;		None
+   482 ;; Tracked objects:
+   483 ;;		On entry : 0/0
+   484 ;;		On exit  : 0/0
+   485 ;;		Unchanged: 0/0
+   486 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14
+   487 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   488 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   489 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   490 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   491 ;;Total ram usage:        0 bytes
+   492 ;; Hardware stack levels used:    1
+   493 ;; This function calls:
+   494 ;;		Nothing
+   495 ;; This function is called by:
+   496 ;;		_TMR2_Initialize
+   497 ;; This function uses a non-reentrant model
+   498 ;;
+   499                           
+   500                           	psect	text6
+   501  00FF30                     __ptext6:
+   502                           	opt stack 0
+   503  00FF30                     _TMR2_StartTimer:
+   504                           	opt stack 28
+   505                           
+   506                           ;tmr2.c: 84: T2CONbits.TMR2ON = 1;
+   507                           
+   508                           ;incstack = 0
+   509  00FF30  84CA               	bsf	4042,2,c	;volatile
+   510  00FF32  0012               	return		;funcret
+   511  00FF34                     __end_of_TMR2_StartTimer:
+   512                           	opt stack 0
+   513                           intcon	equ	0xFF2
+   514                           status	equ	0xFD8
+   515                           
+   516 ;; *************** function _PWM4_Initialize *****************
+   517 ;; Defined at:
+   518 ;;		line 63 in file "pwm4.c"
+   519 ;; Parameters:    Size  Location     Type
+   520 ;;		None
+   521 ;; Auto vars:     Size  Location     Type
+   522 ;;		None
+   523 ;; Return value:  Size  Location     Type
+   524 ;;                  1    wreg      void 
+   525 ;; Registers used:
+   526 ;;		wreg, status,2
+   527 ;; Tracked objects:
+   528 ;;		On entry : 0/0
+   529 ;;		On exit  : 0/0
+   530 ;;		Unchanged: 0/0
+   531 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14
+   532 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   533 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   534 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   535 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   536 ;;Total ram usage:        0 bytes
+   537 ;; Hardware stack levels used:    1
+   538 ;; This function calls:
+   539 ;;		Nothing
+   540 ;; This function is called by:
+   541 ;;		_initialize_System
+   542 ;; This function uses a non-reentrant model
+   543 ;;
+   544                           
+   545                           	psect	text7
+   546  00FF3A                     __ptext7:
+   547                           	opt stack 0
+   548  00FF3A                     _PWM4_Initialize:
+   549                           	opt stack 29
+   550                           
+   551                           ;pwm4.c: 68: CCP1CON = 0b00001111;
+   552                           
+   553                           ;incstack = 0
+   554  00FF3A  0E0F               	movlw	15
+   555  00FF3C  6EBA               	movwf	4026,c	;volatile
+   556                           
+   557                           ;pwm4.c: 71: CCPR1L = 0x05;
+   558  00FF3E  0E05               	movlw	5
+   559  00FF40  6EBB               	movwf	4027,c	;volatile
+   560                           
+   561                           ;pwm4.c: 77: TCLKCON = 0x00;
+   562  00FF42  0E00               	movlw	0
+   563  00FF44  010F               	movlb	15	; () banked
+   564  00FF46  6F52               	movwf	82,b	;volatile
+   565                           
+   566                           ; BSR set to: 15
+   567  00FF48  0012               	return		;funcret
+   568  00FF4A                     __end_of_PWM4_Initialize:
+   569                           	opt stack 0
+   570                           intcon	equ	0xFF2
+   571                           status	equ	0xFD8
+   572                           
+   573 ;; *************** function _PIN_MANAGER_Initialize *****************
+   574 ;; Defined at:
+   575 ;;		line 52 in file "pin_manager.c"
+   576 ;; Parameters:    Size  Location     Type
+   577 ;;		None
+   578 ;; Auto vars:     Size  Location     Type
+   579 ;;		None
+   580 ;; Return value:  Size  Location     Type
+   581 ;;                  1    wreg      void 
+   582 ;; Registers used:
+   583 ;;		wreg, status,2
+   584 ;; Tracked objects:
+   585 ;;		On entry : 0/0
+   586 ;;		On exit  : 0/0
+   587 ;;		Unchanged: 0/0
+   588 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14
+   589 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   590 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   591 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   592 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0
+   593 ;;Total ram usage:        0 bytes
+   594 ;; Hardware stack levels used:    1
+   595 ;; This function calls:
+   596 ;;		Nothing
+   597 ;; This function is called by:
+   598 ;;		_initialize_System
+   599 ;; This function uses a non-reentrant model
+   600 ;;
+   601                           
+   602                           	psect	text8
+   603  00FFC8                     __ptext8:
+   604                           	opt stack 0
+   605  00FFC8                     _PIN_MANAGER_Initialize:
+   606                           	opt stack 29
+   607                           
+   608                           ;pin_manager.c: 57: LATE = 0x00;
+   609                           
+   610                           ; BSR set to: 15
+   611                           ;incstack = 0
+   612  00FFC8  0E00               	movlw	0
+   613  00FFCA  6E8D               	movwf	3981,c	;volatile
+   614                           
+   615                           ;pin_manager.c: 58: LATD = 0x00;
+   616  00FFCC  0E00               	movlw	0
+   617  00FFCE  6E8C               	movwf	3980,c	;volatile
+   618                           
+   619                           ;pin_manager.c: 59: LATA = 0x00;
+   620  00FFD0  0E00               	movlw	0
+   621  00FFD2  6E89               	movwf	3977,c	;volatile
+   622                           
+   623                           ;pin_manager.c: 60: LATB = 0x00;
+   624  00FFD4  0E00               	movlw	0
+   625  00FFD6  6E8A               	movwf	3978,c	;volatile
+   626                           
+   627                           ;pin_manager.c: 61: LATC = 0x00;
+   628  00FFD8  0E00               	movlw	0
+   629  00FFDA  6E8B               	movwf	3979,c	;volatile
+   630                           
+   631                           ;pin_manager.c: 66: TRISE = 0x07;
+   632  00FFDC  0E07               	movlw	7
+   633  00FFDE  6E96               	movwf	3990,c	;volatile
+   634                           
+   635                           ;pin_manager.c: 67: TRISA = 0x00;
+   636  00FFE0  0E00               	movlw	0
+   637  00FFE2  6E92               	movwf	3986,c	;volatile
+   638                           
+   639                           ;pin_manager.c: 68: TRISB = 0xFF;
+   640  00FFE4  6893               	setf	3987,c	;volatile
+   641                           
+   642                           ;pin_manager.c: 69: TRISC = 0xD7;
+   643  00FFE6  0ED7               	movlw	215
+   644  00FFE8  6E94               	movwf	3988,c	;volatile
+   645                           
+   646                           ;pin_manager.c: 70: TRISD = 0xFF;
+   647  00FFEA  6895               	setf	3989,c	;volatile
+   648                           
+   649                           ;pin_manager.c: 75: ANCON0 = 0xFF;
+   650  00FFEC  010F               	movlb	15	; () banked
+   651  00FFEE  6948               	setf	72,b	;volatile
+   652                           
+   653                           ; BSR set to: 15
+   654                           ;pin_manager.c: 76: ANCON1 = 0xFF;
+   655  00FFF0  010F               	movlb	15	; () banked
+   656  00FFF2  6949               	setf	73,b	;volatile
+   657                           
+   658                           ; BSR set to: 15
+   659                           ;pin_manager.c: 81: RBPU = 0xFF;
+   660  00FFF4  8EF1               	bsf	intcon2,7,c	;volatile
+   661                           
+   662                           ; BSR set to: 15
+   663  00FFF6  0012               	return		;funcret
+   664  00FFF8                     __end_of_PIN_MANAGER_Initialize:
+   665                           	opt stack 0
+   666  0000                     intcon	equ	0xFF2
+   667                           intcon2	equ	0xFF1
+   668                           status	equ	0xFD8
+   669                           intcon	equ	0xFF2
+   670                           intcon2	equ	0xFF1
+   671                           status	equ	0xFD8
+   672                           
+   673                           	psect	rparam
+   674  0000                     intcon	equ	0xFF2
+   675                           intcon2	equ	0xFF1
+   676                           status	equ	0xFD8
+
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        0
+    BSS         0
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMRAM           95      5       5
+    BANK0           160      0       0
+    BANK1           256      0       0
+    BANK2           256      0       0
+    BANK3           256      0       0
+    BANK4           256      0       0
+    BANK5           256      0       0
+    BANK6           256      0       0
+    BANK7           256      0       0
+    BANK8           256      0       0
+    BANK9           256      0       0
+    BANK10          256      0       0
+    BANK11          256      0       0
+    BANK12          256      0       0
+    BANK13          256      0       0
+    BANK14          192      0       0
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMRAM
+
+    None.
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _main in BANK4
+
+    None.
+
+Critical Paths under _main in BANK5
+
+    None.
+
+Critical Paths under _main in BANK6
+
+    None.
+
+Critical Paths under _main in BANK7
+
+    None.
+
+Critical Paths under _main in BANK8
+
+    None.
+
+Critical Paths under _main in BANK9
+
+    None.
+
+Critical Paths under _main in BANK10
+
+    None.
+
+Critical Paths under _main in BANK11
+
+    None.
+
+Critical Paths under _main in BANK12
+
+    None.
+
+Critical Paths under _main in BANK13
+
+    None.
+
+Critical Paths under _main in BANK14
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 5     0      5       0
+                                              0 COMRAM     5     0      5
+                  _initialize_System
+                           _lock_PPS
+                         _unlock_PPS
+ ---------------------------------------------------------------------------------
+ (1) _unlock_PPS                                           0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _lock_PPS                                             0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _initialize_System                                    0     0      0       0
+             _PIN_MANAGER_Initialize
+                    _PWM4_Initialize
+                    _TMR2_Initialize
+                     _initialize_OSC
+ ---------------------------------------------------------------------------------
+ (2) _initialize_OSC                                       0     0      0       0
+ ---------------------------------------------------------------------------------
+ (2) _TMR2_Initialize                                      0     0      0       0
+                    _TMR2_StartTimer
+ ---------------------------------------------------------------------------------
+ (3) _TMR2_StartTimer                                      0     0      0       0
+ ---------------------------------------------------------------------------------
+ (2) _PWM4_Initialize                                      0     0      0       0
+ ---------------------------------------------------------------------------------
+ (2) _PIN_MANAGER_Initialize                               0     0      0       0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 3
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _initialize_System
+     _PIN_MANAGER_Initialize
+     _PWM4_Initialize
+     _TMR2_Initialize
+       _TMR2_StartTimer
+     _initialize_OSC
+   _lock_PPS
+   _unlock_PPS
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BITCOMRAM           5F      0       0       0        0.0%
+NULL                 0      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+COMRAM              5F      5       5       1        5.3%
+STACK                0      0       0       2        0.0%
+DATA                 0      0       0       3        0.0%
+BITBANK0            A0      0       0       4        0.0%
+BANK0               A0      0       0       5        0.0%
+ABS                  0      0       0       6        0.0%
+BITBANK1           100      0       0       7        0.0%
+BANK1              100      0       0       8        0.0%
+BITBANK2           100      0       0       9        0.0%
+BANK2              100      0       0      10        0.0%
+BITBANK3           100      0       0      11        0.0%
+BANK3              100      0       0      12        0.0%
+BITBANK4           100      0       0      13        0.0%
+BANK4              100      0       0      14        0.0%
+BITBANK5           100      0       0      15        0.0%
+BANK5              100      0       0      16        0.0%
+BITBANK6           100      0       0      17        0.0%
+BANK6              100      0       0      18        0.0%
+BITBANK7           100      0       0      19        0.0%
+BANK7              100      0       0      20        0.0%
+BITBANK8           100      0       0      21        0.0%
+BANK8              100      0       0      22        0.0%
+BITBANK9           100      0       0      23        0.0%
+BANK9              100      0       0      24        0.0%
+BITBANK10          100      0       0      25        0.0%
+BANK10             100      0       0      26        0.0%
+BITBANK11          100      0       0      27        0.0%
+BANK11             100      0       0      28        0.0%
+BITBANK12          100      0       0      29        0.0%
+BANK12             100      0       0      30        0.0%
+BITBANK13          100      0       0      31        0.0%
+BANK13             100      0       0      32        0.0%
+BITBANK14           C0      0       0      33        0.0%
+BANK14              C0      0       0      34        0.0%
+BIGRAM             EBF      0       0      35        0.0%
+BITSFR_2             0      0       0     200        0.0%
+SFR_2                0      0       0     200        0.0%
+BITSFR_1             0      0       0     200        0.0%
+SFR_1                0      0       0     200        0.0%
+BITSFR               0      0       0     200        0.0%
+SFR                  0      0       0     200        0.0%
+
+
+Microchip Technology PIC18 Macro Assembler V1.42 build -159332390 
+Symbol Table                                                                                   Thu Sep 14 15:53:41 2017
+
+                             l33 FF92                               u25 FFB6  
+                             u27 FFB8                     __CFG_CP0$OFF 000000  
+                            _GIE 007F97                              _PR2 000FCB  
+                _TMR2_Initialize FF6C                  _PWM4_Initialize FF3A  
+                   __CFG_IESO$ON 000000                             _LATA 000F89  
+                           _LATB 000F8A                             _LATC 000F8B  
+                           _LATD 000F8C                             _LATE 000F8D  
+                           _RBPU 007F8F                             _TMR2 000FCC  
+               ??_initialize_OSC 0001                    __CFG_FCMEN$ON 000000  
+                           _main FF80                    __CFG_T1DIG$ON 000000  
+                           start 0000                     ___param_bank 000000  
+                          EECON2 000FA7                            PPSCON 000EFF  
+                          ?_main 0001                            _T2CON 000FCA  
+                          _RPOR2 000EC8                            _TRISA 000F92  
+                          _TRISB 000F93                            _TRISC 000F94  
+                          _TRISD 000F95                            _TRISE 000F96  
+                _TMR2_StartTimer FF30          __CFG_DSWDTOSC$INTOSCREF 000000  
+                __initialization FF34                     __end_of_main FF94  
+        __end_of_PWM4_Initialize FF4A          __end_of_TMR2_Initialize FF80  
+                 __CFG_OSC$HSPLL 000000                           ??_main 0006  
+                  __activetblptr 000000                           _CCPR1L 000FBB  
+                         _ANCON0 000F48                           _ANCON1 000F49  
+                 __CFG_WDTEN$OFF 000000                           _OSCCON 000FD3  
+                 __CFG_WPCFG$OFF 000000                           _STATUS 000FD8  
+                 __CFG_WPDIS$OFF 000000                   __CFG_XINST$OFF 000000  
+               __end_of_lock_PPS FFAA          __end_of_TMR2_StartTimer FF34  
+                     __accesstop 0060          __end_of__initialization FF34  
+                  ___rparam_used 000001                  __CFG_IOL1WAY$ON 000000  
+           __CFG_WPEND$PAGE_WPFP 000000                   __pcstackCOMRAM 0001  
+               ?_PWM4_Initialize 0001                 ?_TMR2_Initialize 0001  
+                __CFG_DSWDTPS$G2 000000                          _CCP1CON 000FBA  
+                        _REFOCON 000F3D                          _TCLKCON 000F52  
+                        _OSCTUNE 000F9B                _initialize_System FF5A  
+               ?_TMR2_StartTimer 0001               ?_initialize_System 0001  
+                      ?_lock_PPS 0001              ??_initialize_System 0001  
+                        __Hparam 0000                          __Lparam 0000  
+                __CFG_STVREN$OFF 000000            __CFG_RTCOSC$INTOSCREF 000000  
+                        __pcinit FF34                          __ramtop 0F00  
+                        __ptext0 FF80                          __ptext1 FFAA  
+                        __ptext2 FF94                          __ptext3 FF5A  
+                        __ptext4 FF4A                          __ptext5 FF6C  
+                        __ptext6 FF30                          __ptext7 FF3A  
+                        __ptext8 FFC8                        _T2CONbits 000FCA  
+      __end_of_initialize_System FF6C         ??_PIN_MANAGER_Initialize 0001  
+           end_of_initialization FF34                       ??_lock_PPS 0001  
+        __size_of_initialize_OSC 0010                 __CFG_DSBOREN$OFF 000000  
+                     _unlock_PPS FFAA                __CFG_WPFP$PAGE_63 000000  
+            __CFG_MSSP7B_EN$MSK7 000000                 __CFG_DSWDTEN$OFF 000000  
+            start_initialization FF34       __size_of_initialize_System 0012  
+__size_of_PIN_MANAGER_Initialize 0030                 __CFG_LPT1OSC$OFF 000000  
+       __size_of_PWM4_Initialize 0010         __size_of_TMR2_Initialize 0014  
+                    ?_unlock_PPS 0001                __size_of_lock_PPS 0016  
+         _PIN_MANAGER_Initialize FFC8                   _initialize_OSC FF4A  
+       __size_of_TMR2_StartTimer 0004           __end_of_initialize_OSC FF5A  
+                       _PIR1bits 000F9E                 __CFG_WDTPS$32768 000000  
+            __size_of_unlock_PPS 001E                ??_PWM4_Initialize 0001  
+              ??_TMR2_Initialize 0001                  ?_initialize_OSC 0001  
+                       __Hrparam 0000                         __Lrparam 0000  
+                       _lock_PPS FF94                    __size_of_main 0014  
+              ??_TMR2_StartTimer 0001                         main@argc 0001  
+                       main@argv 0003                     ??_unlock_PPS 0001  
+        ?_PIN_MANAGER_Initialize 0001               __end_of_unlock_PPS FFC8  
+ __end_of_PIN_MANAGER_Initialize FFF8                       _STATUSbits 000FD8  
